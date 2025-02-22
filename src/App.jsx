@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+
+import "@mantine/core/styles.css";
+import "@mantine/dropzone/styles.css";
+
+import { Text } from "@mantine/core";
+import { Tabs } from "@mantine/core";
+import { IconMessageCircle, IconFile3d } from "@tabler/icons-react";
+
+import TextScreen from "./pages/TextScreen/TextScreen";
+import FileScreen from "./pages/FileScreen/FileScreen";
+
+// import '@mantine/dates/styles.css';
+// import '@mantine/code-highlight/styles.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Text variant="h1" size="xl" fw={700} align="center"></Text>
+      <Tabs defaultValue="text">
+        <Tabs.List>
+          <Tabs.Tab value="text" leftSection={<IconMessageCircle size={12} />}>
+            Text
+          </Tabs.Tab>
+          <Tabs.Tab value="file" leftSection={<IconFile3d size={12} />}>
+            Files
+          </Tabs.Tab>
+        </Tabs.List>
+
+        <Tabs.Panel value="text">
+          <TextScreen />
+        </Tabs.Panel>
+
+        <Tabs.Panel value="file">
+          <FileScreen />
+        </Tabs.Panel>
+      </Tabs>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
